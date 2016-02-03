@@ -701,19 +701,19 @@ params = CGI.parse(uri.query || "")
   # @note execjs will blow up if no JS RUNTIME is detected and is loaded.
   # @return [Array] the node.js binary path if we need it or an empty Array
   def add_node_js_binary
-    pp bundler.has_gem?('execjs') && !node_js_installed? ? [@node_installer.binary_path] : []
+    p bundler.has_gem?('execjs') && !node_js_installed? ? [@node_installer.binary_path] : []
     bundler.has_gem?('execjs') && !node_js_installed? ? [@node_installer.binary_path] : []
   end
 
   def node_bp_bin_path
-    pp "#{Dir.pwd}/#{NODE_BP_PATH}"
+    p "#{Dir.pwd}/#{NODE_BP_PATH}"
     "#{Dir.pwd}/#{NODE_BP_PATH}"
   end
 
   # checks if node.js is installed via the official heroku-buildpack-nodejs using multibuildpack
   # @return [Boolean] true if it's detected and false if it isn't
   def node_js_installed?
-    pp run("#{node_bp_bin_path}/node -v")
+    p run("#{node_bp_bin_path}/node -v")
     @node_js_installed ||= run("#{node_bp_bin_path}/node -v") && $?.success?
   end
 
